@@ -14,7 +14,6 @@ public interface InterfaceList <E> {
     E peekLast();
     
     E search(E crit);
-    
 
     boolean isEmpty();
 

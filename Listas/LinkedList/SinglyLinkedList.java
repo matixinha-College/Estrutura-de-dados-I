@@ -14,6 +14,36 @@ public class SinglyLinkedList<T> implements InterfaceList<T> {
         this.tail=null;
         this.size=0;
     }
+
+    //SinglyLinkedList Methods for Node Types
+    private Node searchNode(T crit){
+        Node t = head;
+
+        while(sn!=null){
+            if(sn.data.equals(crit)){
+                return sn;
+            }
+
+            sn = sn.next;
+        }
+        return null;
+    }
+    private Node searchNodeBefore(T crit){
+        
+        Node t = head;
+        Node tBefore = null;
+
+        while (t!=null){
+            tBefore=t;
+            t=t.next;
+            
+            if(t!=null && t.data.equals(crit)){
+                return tBefore;
+            }
+        }
+        return null;
+    }
+
     @Override
     public void addFirst(T value) {
 
@@ -47,12 +77,33 @@ public class SinglyLinkedList<T> implements InterfaceList<T> {
 
     @Override
     public void addAfter(T value, T crit) {
+        
         Node n = new Node(value);
+        Node t = searchNode(crit);
+        
+        if(t.next!=null){
+            n.next = t.next;
+            t.next = n;
+        }else{
+            t.next = n;
+            tail = n;
+        }
     }
 
     @Override
     public T removeFirst() {
-        return null;
+        T rData = null;
+
+        if (head==tail){
+            rData = head.data;
+            head=null;
+            tail=null;
+        }else{
+            rData = head.data;
+            head.next=head.next.next;
+            head = head.next;
+        }
+        return rData;
     }
 
     @Override
