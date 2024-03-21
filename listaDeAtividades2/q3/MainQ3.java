@@ -16,7 +16,7 @@ public class MainQ3 {
         list.addAfter(5, 3);
 
         // Print the list
-        System.out.println("List: " + list);
+        list.show();
 
         // Get the size of the list
         System.out.println("Size: " + list.getSize());
